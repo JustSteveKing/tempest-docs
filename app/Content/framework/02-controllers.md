@@ -142,8 +142,10 @@ final class CreatedResponse implements Response
 
 Thanks to route attributes, you can make your own, custom `Route` implementations. These custom route classes can be used to make route groups that add middleware, do authorization checks, etc.
 
+Please note, the Attribute target should be `{php}TARGET_METHOD` not `{php}TARGET_CLASS`, as the Route discovery will look for public method that have attributes available.
+
 ```php
-#[Attribute]
+#[Attribute(Attribute::TARGET_METHOD)]
 final readonly class AdminRoute extends Route
 {
     public function __construct(string $uri, Method $method)
